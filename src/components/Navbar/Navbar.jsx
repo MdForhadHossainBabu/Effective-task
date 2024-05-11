@@ -255,7 +255,7 @@ onWindowMatch();
              </NavLink>
            )}
          </div>
-         <div className="flex items-center relative">
+        {user && <div className="flex items-center relative">
            <img title={user?.displayName}
              onClick={() => setDropdown(!dropdown)}
              className="w-12 h-12 rounded-full hidden md:flex lg:flex"
@@ -270,9 +270,10 @@ onWindowMatch();
                dropdown ? '' : 'hidden'
              } right-4 border bg-rose-200 px-4 rounded-md w-[12rem]`}
            >
+             
              {user ? (
                <div className="space-y-4 p-2">
-                 <h1 className="text-lg font-bold text-center">
+                 <h1 className=" text-center">
                    {user.displayName}
                  </h1>
                  <button
@@ -296,7 +297,7 @@ onWindowMatch();
                </NavLink>
              )}
            </div>
-         </div>
+         </div>}
          <div
            className="text-2xl border-2 p-1 md:flex lg:hidden flex text-white bg-rose-600"
            onClick={() => setOpen(!open)}
