@@ -1,0 +1,13 @@
+.style{
+background: rgb(58,101,180);
+background: linear-gradient(90deg, rgba(58,101,180,1) 0%, rgba(253,29,97,1) 43%, rgba(69,165,252,1) 85%);
+}
+
+.styleOf{
+ background: rgb(0,212,255);
+background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(76,68,206,1) 17%, rgba(73,73,203,1) 75%, rgba(1,153,194,1) 91%);
+}
+.banner{
+ background: rgb(0,152,193);
+background: linear-gradient(90deg, rgba(0,152,193,1) 12%, rgba(76,68,206,1) 26%, rgba(74,72,204,1) 42%, rgba(107,107,210,1) 62%, rgba(0,212,255,1) 83%);
+}
