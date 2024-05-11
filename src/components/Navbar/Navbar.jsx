@@ -256,12 +256,11 @@ onWindowMatch();
            )}
          </div>
          <div className="flex items-center relative">
-           <img
+           <img title={user?.displayName}
              onClick={() => setDropdown(!dropdown)}
              className="w-12 h-12 rounded-full hidden md:flex lg:flex"
              src={
-               user?.photoURL ||
-               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgci5ekVUB7g_AJmT3hu1j9NM188wVqgh9kw&s'
+               user?.photoURL
              }
              alt=""
            />
@@ -269,16 +268,16 @@ onWindowMatch();
            <div
              className={`absolute h-24 top-14 ${
                dropdown ? '' : 'hidden'
-             } right-4 border-4 w-[12rem]`}
+             } right-4 border bg-rose-200 px-4 rounded-md w-[12rem]`}
            >
              {user ? (
-               <div className="space-y-4">
+               <div className="space-y-4 p-2">
                  <h1 className="text-lg font-bold text-center">
                    {user.displayName}
                  </h1>
                  <button
                    onClick={() => logOut()}
-                   className="border-2 px-4 w-full  font-bold text-white border-amber-500 py-1 rounded styleOf hover:bg-transparent"
+                   className="border-2 px-4 w-full  font-bold hover:text-rose-600 bg-orange-500 border-amber-500 py-1 rounded text-white hover:bg-transparent"
                  >
                    logout
                  </button>
