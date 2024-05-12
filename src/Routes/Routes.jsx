@@ -7,6 +7,7 @@ import Home from "../components/Home/Home";
 import Assignment from "../components/Assignment/Assignment";
 import CreateAssignment from "../components/CreateAssignment/CreateAssignment";
 import PendingAssignment from "../components/PendingAssignment/PendingAssignment";
+import UpdateOne from "../components/UpdateOne/UpdateOne";
 
  const router = createBrowserRouter([
    {
@@ -39,6 +40,12 @@ import PendingAssignment from "../components/PendingAssignment/PendingAssignment
          path: '/pending-assignment',
          element: <PendingAssignment />,
          loader: () => fetch('http://localhost:5000/create-assignment'),
+       },
+       {
+         path: '/update/:id',
+         element: <UpdateOne />,
+         loader: ({ params }) =>
+           fetch(`http://localhost:5000/create-assignment/${params.id}`),
        },
      ],
    },

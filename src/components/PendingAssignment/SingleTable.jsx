@@ -1,6 +1,18 @@
 const SingleTable = ({ tableData }) => {
- console.log(tableData);
- const {title, label, mark, email , description, status} = tableData;
+  console.log(tableData);
+  const { _id, title, label, email, status } = tableData;
+  const handleProgress = (id, prevStatus, Status) => {
+    console.log(id, prevStatus, Status);
+    fetch(`http://localhost:5000/create-assignment/${_id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type':'application/json'
+      },
+      body:JSON.stringify(prevStatus)
+    }).then(res => res.json()).then(data => {
+      console.log(data);
+   })
+  }
  return (
    <tbody className="bg-white divide-y divide-gray-200 ">
      <tr>
@@ -53,8 +65,8 @@ const SingleTable = ({ tableData }) => {
        </td>
        <td className="px-4 py-4 text-sm whitespace-nowrap">
          <div className="flex items-center gap-x-6">
-           <button className="text-gray-500 transition-colors duration-200   hover:text-cyan-500 focus:outline-none">
-             <svg
+           <button onClick={()=>handleProgress(_id, status, 'In Progress')} className="text-gray-500 transition-colors duration-200   hover:text-cyan-500 focus:outline-none">
+            <svg
                xmlns="http://www.w3.org/2000/svg"
                fill="none"
                viewBox="0 0 24 24"

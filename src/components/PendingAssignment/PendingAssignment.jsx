@@ -3,7 +3,7 @@ import SingleTable from "./SingleTable";
 const PendingAssignment = () => {
 
  const data = useLoaderData();
- // console.log(data);
+ // console.log(data);jjk
 
  return (
    <div>

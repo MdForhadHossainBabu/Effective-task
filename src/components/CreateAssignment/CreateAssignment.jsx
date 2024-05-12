@@ -20,7 +20,7 @@ const CreateAssignment = () => {
   const description = form.description.value;
    const status = 'pending';
    const Deadline = startDate;
-  const email = user.email;
+  const email = user?.email;
   const photoURL = user?.photoURL;
   const newAssignment = {
     title,
