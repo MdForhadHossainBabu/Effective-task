@@ -7,7 +7,7 @@ import { AuthContext } from '../../FirebaseProvider/AuthProvider';
 
 const Login = () => {
 
-  const { signIn, setUser } = useContext(AuthContext);
+  const { signIn, setUser, signInGoogle } = useContext(AuthContext);
   // console.log(signIn);
   
  const [open, setOpen] = useState(false);
@@ -27,7 +27,18 @@ const Login = () => {
       console.log(error);
     })
   }
+  //sign in with google 
+  const handleGoogle = () => {
+    signInGoogle().then(result => {
+      console.log(result.user);
+      setUser(result.user)
+    }).then(error => {
+      console.log(error);
+    })
+  }
+
   
+
  return (
    <div className="h-[90.7vh] px-4">
      <div className="style lg:w-1/2 mx-auto mt-12 rounded-md">
@@ -69,6 +80,17 @@ const Login = () => {
            />
          </div>
        </form>
+       <div className="flex items-center justify-center gap-12 mb-4">
+         <button
+           onClick={() => handleGoogle()}
+           className="border-2 px-4 py-2 rounded-sm bg-cyan-600 hover:bg-transparent duration-100 hover:scale-105 hover:rounded-full text-lg font-medium hover:text-white"
+         >
+           Login with Google
+         </button>
+         <button className="border-2 px-4 py-2 rounded-sm bg-cyan-600 hover:bg-transparent duration-100 hover:scale-105 hover:rounded-full text-lg font-medium hover:text-white">
+           Login with Github
+         </button>
+       </div>
        <div>
          <h1 className="text-lg font-medium text-center pb-12">
            Don't have an account ?

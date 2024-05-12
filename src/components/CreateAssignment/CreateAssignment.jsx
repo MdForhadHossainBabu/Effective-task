@@ -2,8 +2,10 @@ import { useContext, useState } from "react";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { AuthContext } from "../../FirebaseProvider/AuthProvider";
+import Swal from "sweetalert2";
 const CreateAssignment = () => {
- const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
+  // console.log(startDate);
 
  const { user } = useContext(AuthContext);
  // console.log(user);
@@ -16,37 +18,63 @@ const CreateAssignment = () => {
   const photo = form.photo.value;
   const label = form.label.value;
   const description = form.description.value;
-  const status = 'pending'
-  const assignment = { title, mark, photo, label,description, status };
-  console.log(assignment, user.email );
+   const status = 'pending';
+   const Deadline = startDate;
+  const email = user.email;
+  const photoURL = user?.photoURL;
+  const newAssignment = {
+    title,
+    mark,
+    photo,
+    label,
+    description,
+    status,
+    email,
+    photoURL,
+    Deadline,
+  };
+   console.log(newAssignment);
+   fetch('http://localhost:5000/create-assignment', {
+     method: 'POST',
+     headers: {
+       'content-type': 'application/json'
+     },
+     body:JSON.stringify(newAssignment)
+   }).then(res => res.json()).then(data => {
+     console.log(data);
+     if (data.insertedId) {
+       Swal.fire({
+         title:'success',
+         icon: 'success',
+         text: 'Your Assignment Creating Now',
+         confirmButtonText:'cool'
+       });
+     }
+   })
  }
  return (
-   <div className="h-[91.6vh] overflow-x-hidden">
-     <h1 className="text-4xl text-center font-bold text-rose-600 my-3">
-       Creating Assignment{' '}
+   <div className="h-[91.6vh]">
+     <h1 className="text-4xl text-center font-bold text-rose-600">
+       Creating Assignment
      </h1>
-     <p className="text-center mb-5">
+     <p className="text-center mt-2 mb-4">
        These are just a few ideas to get you started. You can adjust the
-       difficulty and <br /> specific focus depending on the age and skill level of
-       your students.
+       difficulty <br /> and specific focus depending on the age and skill level
+       of your students.
      </p>
-     <form onSubmit={handleGetData}>
-       <div className="grid grid-cols-1 gap-12 lg:gap-0 lg:grid-cols-4 relative">
-         <div className="lg:col-span-2 px-3 ml-4 ">
-           <img
-             className="h-full w-full shadow-2xl"
-             src="https://www.simplilearn.com/ice9/free_resources_article_thumb/What_Is_a_Project.jpg"
-             alt=""
-           />
-           <h1 className="lg:mx-12 lg:text-5xl text-4xl font-bold absolute top-24 text-rose-600 bg-transparent w-full h-full">
-             Creating Assignment
-             <p className="font-normal text-lg mt-4">
-               creating all assignment categories to this way to submit on time
-               way to get away <br />
-             </p>
-           </h1>
-         </div>
-         <div className="lg:col-span-2 lg:w-3/4 lg:mx-auto w-full px-4 space-y-3 border">
+     <div className="grid grid-cols-1 lg:grid-cols-4">
+       <div className="lg:col-span-2">
+         <img
+           className="h-full w-full lg:mx-4 px-4 rounded"
+           src="https://www.simplilearn.com/ice9/free_resources_article_thumb/What_Is_a_Project.jpg"
+           alt=""
+         />
+       </div>
+       <form
+         className="lg:col-span-2 lg:w-3/4 lg:mx-auto w-full px-4 space-y-3"
+         onSubmit={handleGetData}
+       >
+         <div>
            <div className="space-y-2">
              <p className="font-medium">Title : </p>
 
@@ -117,8 +145,9 @@ const CreateAssignment = () => {
              value="Create"
            />
          </div>
-       </div>
-     </form>
+       </form>
+     </div>
+     {/* form end */}
    </div>
  );
 };

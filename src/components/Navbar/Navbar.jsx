@@ -273,7 +273,7 @@ onWindowMatch();
              
              {user ? (
                <div className="space-y-4 p-2">
-                 <h1 className=" text-center">
+                 <h1 className=" text-center dark:text-black">
                    {user.displayName}
                  </h1>
                  <button
