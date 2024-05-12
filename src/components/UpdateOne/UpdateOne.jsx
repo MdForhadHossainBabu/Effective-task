@@ -1,16 +1,16 @@
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
-import { DatePicker } from 'react-datepicker';
-import { useState } from "react";
+// import { DatePicker } from 'react-datepicker';
+// import { useState } from "react";
 
 const UpdateOne = () => {
  const cards = useLoaderData();
- const {  _id,label, mark, photo, title, description } = cards;
+ const {  _id,label, mark, photo, title, description, Deadline } = cards;
 
-   const [startDate, setStartDate] = useState(new Date().toLocaleDateString());
+   // const [startDate, setStartDate] = useState(new Date().toLocaleDateString());
  console.log(cards);
 
-  const handleUpate = e => {
+  const handleUpdate = e => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
@@ -47,18 +47,19 @@ const UpdateOne = () => {
       });
   };
  return (
-  <div>
-   
-     <form onSubmit={handleUpate}
-       className="lg:col-span-2 lg:w-3/4 lg:mx-auto w-full px-4 space-y-3">
+   <div>
+     <form
+       onSubmit={handleUpdate}
+       className="lg:col-span-2 lg:w-3/4 lg:mx-auto w-full px-4 space-y-3"
+     >
        <div>
          <div className="space-y-2">
            <p className="font-medium">Title : </p>
 
            <input
              className="w-full px-2 py-2 rounded outline-none bg-slate-200"
-       type="text"
-       defaultValue={title}
+             type="text"
+             defaultValue={title}
              placeholder="Title..."
              name="title"
              id=""
@@ -68,8 +69,8 @@ const UpdateOne = () => {
            <p className="font-medium">Photo URL : </p>
            <input
              className="bg-slate-200 w-full outline-none px-4 py-2 rounded"
-       type="text"
-       defaultValue={photo}
+             type="text"
+             defaultValue={photo}
              name="photo"
              id=""
              placeholder="Photo URL..."
@@ -79,8 +80,8 @@ const UpdateOne = () => {
            <p className="font-medium">Select label :</p>
            <select
              className=" w-full p-3 outline-none font-medium rounded bg-slate-200"
-       name="label"
-       defaultValue={label}
+             name="label"
+             defaultValue={label}
              id=""
            >
              <option value="easy">Easy</option>
@@ -94,8 +95,8 @@ const UpdateOne = () => {
              <input
                className="bg-slate-200 outline-none px-4 py-2 w-full font-medium rounded"
                type="text"
-        name="marks"
-        defaultValue={mark}
+               name="marks"
+               defaultValue={mark}
                id=""
                placeholder="Marks of Assignment..."
              />
@@ -103,11 +104,16 @@ const UpdateOne = () => {
 
            <div className="flex-1 space-y-2">
              <p className="font-medium">Deadline : </p>
-             <DatePicker
+             {/* <DatePicker
                className="outline-none bg-slate-200 px-2 py-2 w-full rounded dark:text-slate-900"
-               selected={startDate}
+        selected={startDate}
+        defaultValue={Deadline}
                onChange={date => setStartDate(date)}
-             />
+             /> */}
+             <p className="outline-none bg-slate-200 px-2 py-2 w-full rounded dark:text-slate-900">
+               {' '}
+               {new Date(Deadline).toLocaleDateString()}
+             </p>
            </div>
          </div>
          <div className="space-y-2">
@@ -115,14 +121,14 @@ const UpdateOne = () => {
 
            <textarea
              className="bg-slate-200 drop-shadow-2xl shadow-2xl w-full h-20  p-2  outline-none font-medium opacity-70 rounded"
-       name="description"
-       defaultValue={description}
+             name="description"
+             defaultValue={description}
              placeholder="Description"
              id=""
            ></textarea>
          </div>
          <input
-           className="border-2 w-full py-2 font-extrabold bg-slate-300 text-rose-500"
+           className="border-2 w-full py-2 font-extrabold outline-none bg-slate-300 text-rose-500"
            type="submit"
            value="Create"
          />

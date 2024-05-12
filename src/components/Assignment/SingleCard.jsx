@@ -5,7 +5,7 @@ const SingleCard = ({ assignment }) => {
   const { _id,title, photo,description,  photoURL, Deadline } = assignment;
     
 
-  const handleDelete = _id => {
+  const handleDelete = () => {
 
 
    Swal.fire({
