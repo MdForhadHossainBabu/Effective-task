@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const SingleCard = ({ assignment }) => {
-  const { _id,title, photo,description,  photoURL, Deadline, status } = assignment;
-    
+  const { _id,title, photo,description,  photoURL, Deadline, status, label, name } = assignment;
+    console.log(assignment);
 
   const handleDelete = (_id) => {
    Swal.fire({
@@ -36,7 +36,7 @@ const SingleCard = ({ assignment }) => {
    
   }
  return (
-   <div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+   <div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 font-Roboto">
      <img
        className="object-cover w-full h-64"
        src={
@@ -48,16 +48,36 @@ const SingleCard = ({ assignment }) => {
 
      <div className="p-6">
        <div>
-         <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
-           Product
+         <span>
+           <h1
+             className={`text-sm
+               ${status === 'pending' && 'text-orange-500'}
+               ${status === 'In Progress' && 'text-cyan-500'}
+               ${
+                 status === 'Complete' && 'text-rose-500'
+               }border-cyan-500 rounded font-Raleway
+               `}
+           >
+             {' '}
+             {status}
+           </h1>
          </span>
          <a
-           href="#"
+           href=""
            className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
            role="link"
          >
-           {title || 'amar sonar bangla ami tomy valo bashi '}
+           {title}
          </a>
+         <span
+           className={` ${label === 'easy' && 'text-cyan-500'} ${
+             label === 'medium' && 'text-amber-500'
+           } ${
+             label === 'hard' && 'text-rose-600'
+           } bg-[#E9F2FE] px-4 pb-1 rounded-full font-Space`}
+         >
+           {label}
+         </span>
          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
            {description || ''}
          </p>
@@ -76,12 +96,12 @@ const SingleCard = ({ assignment }) => {
                className="mx-2 font-semibold text-gray-700 dark:text-gray-200"
                role="link"
              >
-               Jone Doe
+               {name}
              </a>
            </div>
-           <div className="flex items-center gap-4">
+           <div className="flex items-center gap-12">
              <div>
-               <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
+               <span className="mx-1 text-xs text-gray-600 dark:text-gray-300 font-Space">
                  {' '}
                  Date :{' '}
                  {new Date(Deadline).toLocaleDateString() ||
@@ -89,11 +109,18 @@ const SingleCard = ({ assignment }) => {
                </span>
              </div>
              <div>
-               <h1 className={`text-sm
+               {/* <h1
+                 className={`text-sm
                ${status === 'pending' && 'text-orange-500'}
                ${status === 'In Progress' && 'text-cyan-500'}
-               ${status === 'Complete' && 'text-rose-500'} border-2 px-3 pb-1 border-cyan-500 rounded
-               `}> {status}</h1>
+               ${
+                 status === 'Complete' && 'text-rose-500'
+               } border px-2 border-cyan-500 rounded font-Raleway
+               `}
+               >
+                 {' '}
+                 {status}
+               </h1> */}
              </div>
            </div>
          </div>
@@ -101,13 +128,13 @@ const SingleCard = ({ assignment }) => {
        <div className="flex items-center flex-col flex-1">
          <div className="flex items-center gap-4 justify-around mt-8">
            <Link to={`/update/${_id}`}>
-             <button className="border-2 px-12 py-1 rounded-md text-lg font-medium bg-cyan-700 text-white">
+             <button className="border-2 px-12 py-1 rounded-md text-lg font-medium bg-cyan-700 text-white font-Space">
                Update{' '}
              </button>
            </Link>
            <button
              onClick={() => handleDelete(_id)}
-             className="border-2 px-12 py-1 rounded-md text-lg font-medium bg-rose-500 text-white "
+             className="border-2 px-12 py-1 rounded-md text-lg font-medium bg-rose-500 text-white font-Space"
            >
              Delete
            </button>

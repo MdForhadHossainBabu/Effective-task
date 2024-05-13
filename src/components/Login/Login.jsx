@@ -42,8 +42,8 @@ const Login = () => {
  return (
    <div className="h-[90.7vh] px-4">
      <div className="style lg:w-1/2 mx-auto mt-12 rounded-md">
-       <h2 className="text-4xl font-bold text-center pt-12 text-white">
-         LOGIN NOW
+       <h2 className="text-4xl font-bold text-center pt-12 text-white font-Space">
+         Login Now
        </h2>
        <form onSubmit={handleLogin} className="space-y-5 py-24">
          <div className="flex flex-col mx-12 space-y-3">
@@ -83,11 +83,11 @@ const Login = () => {
        <div className="flex items-center justify-center gap-12 mb-4">
          <button
            onClick={() => handleGoogle()}
-           className="border-2 px-4 py-2 rounded-sm bg-cyan-600 hover:bg-transparent duration-100 hover:scale-105 hover:rounded-full text-lg font-medium hover:text-white"
+           className="border-2 px-4 py-1 shadow-3xl drop-shadow-2xl duration-100 hover:scale-105 rounded-full text-lg font-medium text-white"
          >
            Login with Google
          </button>
-         <button className="border-2 px-4 py-2 rounded-sm bg-cyan-600 hover:bg-transparent duration-100 hover:scale-105 hover:rounded-full text-lg font-medium hover:text-white">
+         <button className="border-2 px-4 py-1 shadow-3xl drop-shadow-2xl duration-100 hover:scale-105 rounded-full text-lg font-medium text-white">
            Login with Github
          </button>
        </div>

@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const UpdateOne = () => {
  const cards = useLoaderData();
- const {  _id,label, mark, photo, title, description, Deadline } = cards;
+ const {  _id,label, mark, photo, title, description, Deadline, name } = cards;
 
    // const [startDate, setStartDate] = useState(new Date().toLocaleDateString());
  console.log(cards);
@@ -13,6 +13,7 @@ const UpdateOne = () => {
   const handleUpdate = e => {
     e.preventDefault();
     const form = e.target;
+    const name = form.name.value;
     const title = form.title.value;
     const mark = parseFloat(form.marks.value);
     const photo = form.photo.value;
@@ -24,6 +25,7 @@ const UpdateOne = () => {
       photo,
       label,
       description,
+      name
     };
     console.log(newAssignment);
     fetch(`http://localhost:5000/create-assignment/${_id}`, {
@@ -47,12 +49,25 @@ const UpdateOne = () => {
       });
   };
  return (
-   <div>
+   <div className="h-[100vh]">
+     <h1 className="text-4xl text-center mt-5 text-rose-600 font-Space font-extrabold">Update Assignment</h1>
      <form
        onSubmit={handleUpdate}
-       className="lg:col-span-2 lg:w-3/4 lg:mx-auto w-full px-4 space-y-3"
+       className="lg:col-span-2 lg:w-3/4 lg:mx-auto w-full px-4 mb-12 mt-6"
      >
        <div>
+         <div className="space-y-2">
+           <p className="font-medium">Name : </p>
+
+           <input
+             className="w-full px-2 py-2 rounded outline-none bg-slate-200"
+             type="text"
+             defaultValue={name}
+             placeholder="Name..."
+             name="name"
+             id=""
+           />
+         </div>
          <div className="space-y-2">
            <p className="font-medium">Title : </p>
 

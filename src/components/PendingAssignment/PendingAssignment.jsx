@@ -10,10 +10,10 @@ const PendingAssignment = () => {
      <div>
        <section className="container px-4 mx-auto pt-12">
          <div className="flex items-center gap-x-3">
-           <h2 className="text-lg font-medium text-gray-800 ">Bid Requests</h2>
+           <h2 className="text-lg font-medium text-gray-800 font-Space">Assignments</h2>
 
            <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full ">
-             05 Requests
+             {data.length} Requests
            </span>
          </div>
 
@@ -53,7 +53,7 @@ const PendingAssignment = () => {
                          className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
                        >
                          <button className="flex items-center gap-x-2">
-                           <span>Price</span>
+                           <span>Mark</span>
                          </button>
                        </th>
 
@@ -61,7 +61,7 @@ const PendingAssignment = () => {
                          scope="col"
                          className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
                        >
-                         Category
+                         Label
                        </th>
 
                        <th

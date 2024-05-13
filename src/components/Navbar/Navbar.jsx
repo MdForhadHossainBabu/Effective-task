@@ -147,7 +147,7 @@ onWindowMatch();
          />
 
          <div>
-           <ul className="flex flex-col gap-4">
+           <ul className="flex flex-col gap-4 font-Space">
              <>
                <NavLink
                  to="/"
@@ -189,8 +189,8 @@ onWindowMatch();
                  to="/pending-assignment"
                  className={({ isActive }) =>
                    isActive
-                     ? 'text-orange-500 border-amber-600 rounded border-2 pr-5 pl-4 font-medium'
-                     : 'hover:bg-transparent  rounded border-2 pr-5 pl-4 font-medium text-rose-400 border-amber-600 '
+                     ? 'text-orange-500 border-amber-600 rounded border-2 pr-5 pl-4 font-medium text-balance'
+                     : 'hover:bg-transparent  rounded border-2 pr-5 pl-4 font-medium text-rose-400 border-amber-600 text-balance'
                  }
                >
                  {' '}
@@ -203,7 +203,7 @@ onWindowMatch();
      </div>
      <div className="flex items-center justify-between py-4 px-4 dark:bg-slate-950 bg-slate-300 w-full h-14">
        <div>
-         <h1 className="text-2xl font-extrabold text-sky-600">
+         <h1 className="text-2xl font-extrabold text-sky-600 font-Roboto">
            Effective<span className="text-indigo-600">Task</span>
          </h1>
        </div>
@@ -211,7 +211,7 @@ onWindowMatch();
          {/* menu button home about service  */}
 
          <div>
-           <ul className="items-center gap-5 hidden lg:flex ">{navLinks}</ul>
+           <ul className="items-center gap-5 hidden lg:flex font-Space">{navLinks}</ul>
          </div>
          {/* navbar end lg device  */}
        </div>

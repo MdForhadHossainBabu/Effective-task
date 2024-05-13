@@ -12,7 +12,8 @@ const CreateAssignment = () => {
  // handle form submit to get value;
  const handleGetData = e => {
   e.preventDefault();
-  const form = e.target;
+   const form = e.target;
+   const name = form.name.value;
   const title = form.title.value;
   const mark = parseFloat(form.marks.value);
   const photo = form.photo.value;
@@ -22,7 +23,8 @@ const CreateAssignment = () => {
    const Deadline = startDate;
   const email = user?.email;
   const photoURL = user?.photoURL;
-  const newAssignment = {
+   const newAssignment = {
+    name,
     title,
     mark,
     photo,
@@ -75,6 +77,17 @@ const CreateAssignment = () => {
          onSubmit={handleGetData}
        >
          <div>
+           <div className="space-y-2">
+             <p className="font-medium">Name : </p>
+
+             <input
+               className="w-full px-2 py-2 rounded outline-none bg-slate-200"
+               type="text"
+               placeholder="Name..."
+               name="name"
+               id=""
+             />
+           </div>
            <div className="space-y-2">
              <p className="font-medium">Title : </p>
 

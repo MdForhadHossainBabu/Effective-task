@@ -1,6 +1,6 @@
 const SingleTable = ({ tableData }) => {
   console.log(tableData);
-  const { _id, title, label, email, status } = tableData;
+  const { _id, title, label, email, status, mark, Deadline } = tableData;
   const handleProgress = (id, prevStatus, Status) => {
     console.log(id, prevStatus, Status);
     fetch(`http://localhost:5000/create-assignment/${_id}`, {
@@ -14,7 +14,7 @@ const SingleTable = ({ tableData }) => {
    })
   }
  return (
-   <tbody className="bg-white divide-y divide-gray-200 ">
+   <tbody className="bg-white divide-y divide-gray-200  font-Roboto">
      <tr>
        <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
          {title}
@@ -24,11 +24,11 @@ const SingleTable = ({ tableData }) => {
        </td>
 
        <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-         10/04/2024
+         {new Date(Deadline).toLocaleDateString()}
        </td>
 
        <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-         $200
+         {mark}
        </td>
        <td className="px-4 py-4 text-sm whitespace-nowrap">
          <div className="flex items-center gap-x-2">
@@ -36,7 +36,7 @@ const SingleTable = ({ tableData }) => {
              className={`px-3 py-1 rounded-full ${
                label === 'easy' && 'text-blue-500'
              } ${label === 'hard' && 'text-rose-500'} ${
-               label === 'medium' && 'text-cyan-600'
+               label === 'medium' && 'text-amber-500'
              } bg-blue-100/60
                            text-xs `}
            >
