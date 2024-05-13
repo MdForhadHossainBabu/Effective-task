@@ -2,12 +2,10 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const SingleCard = ({ assignment }) => {
-  const { _id,title, photo,description,  photoURL, Deadline } = assignment;
+  const { _id,title, photo,description,  photoURL, Deadline, status } = assignment;
     
 
-  const handleDelete = () => {
-
-
+  const handleDelete = (_id) => {
    Swal.fire({
      title: 'Are you sure?',
      text: "You won't be able to revert this!",
@@ -19,9 +17,19 @@ const SingleCard = ({ assignment }) => {
    }).then(result => {
      if (result.isConfirmed) {
        console.log('data');
-
-
-
+       fetch(`http://localhost:5000/create-assignment/${_id}`, {
+         method:'DELETE'
+       }).then(res => res.json()).then(data => {
+        //  console.log(data);
+         if (data.deletedCount > 0) {
+          //  console.log('data delete successfully');
+           Swal.fire({
+             title: 'Success!',
+             text: 'Assignment Delete Successfully!',
+             icon: 'success',
+           });
+         }
+       })
      }
    });
 
@@ -71,12 +79,23 @@ const SingleCard = ({ assignment }) => {
                Jone Doe
              </a>
            </div>
-           <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
-             {' '}
-             Date :{' '}
-             {new Date(Deadline).toLocaleDateString() ||
-               new Date().toLocaleDateString()}
-           </span>
+           <div className="flex items-center gap-4">
+             <div>
+               <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
+                 {' '}
+                 Date :{' '}
+                 {new Date(Deadline).toLocaleDateString() ||
+                   new Date().toLocaleDateString()}
+               </span>
+             </div>
+             <div>
+               <h1 className={`text-sm
+               ${status === 'pending' && 'text-orange-500'}
+               ${status === 'In Progress' && 'text-cyan-500'}
+               ${status === 'Complete' && 'text-rose-500'} border-2 px-3 pb-1 border-cyan-500 rounded
+               `}> {status}</h1>
+             </div>
+           </div>
          </div>
        </div>
        <div className="flex items-center flex-col flex-1">
