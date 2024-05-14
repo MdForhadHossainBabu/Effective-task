@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { AuthContext } from "../../FirebaseProvider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 const CreateAssignment = () => {
   const [startDate, setStartDate] = useState(new Date());
   // console.log(startDate);
@@ -68,6 +69,9 @@ const CreateAssignment = () => {
  }
  return (
    <div className="h-[91.6vh]">
+     <Helmet>
+       <title>Effective Task || Create-Assignment</title>
+     </Helmet>
      <h1 className="text-4xl text-center font-bold text-rose-600">
        Creating Assignment
      </h1>

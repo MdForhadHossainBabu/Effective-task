@@ -19,7 +19,7 @@ const View = () => {
    <div className="flex items-center justify-center "> 
      <div className="max-w-2xl overflow-hidden my-10 shadow-2xl  rounded-lg drop-shadow-2xl dark:bg-gray-800 font-Roboto bg-slate-200">
        <img
-         className="object-cover w-full shadow-2xl drop-shadow-2xl h-64"
+         className="object-cover w-full shadow-2xl drop-shadow-2xl h-[24rem]"
          src={
            photo ||
            'https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
@@ -49,7 +49,7 @@ const View = () => {
  hover:text-gray-600 hover:underline"
              role="link"
            >
-             {title}
+             {title.substring(0,60)}
            </a>
            <div className="flex items-center justify-between mx-4">
              <div>

@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import SingleTable from "./SingleTable";
+import { Helmet } from "react-helmet-async";
 const PendingAssignment = () => {
 
  const data = useLoaderData();
@@ -7,6 +8,9 @@ const PendingAssignment = () => {
 
  return (
    <div>
+     <Helmet>
+       <title>Effective Task || Pending Assignment</title>
+     </Helmet>
      <div className="max-w-7xl mx-auto">
        <section className="container px-4 mx-auto pt-12">
          <div className="flex items-center gap-x-3">

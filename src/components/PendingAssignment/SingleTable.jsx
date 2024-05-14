@@ -20,7 +20,7 @@ const SingleTable = ({ tableData }) => {
      <tbody className="bg-white divide-y divide-gray-200  font-Roboto">
        <tr>
          <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-           {title}
+           {title.substring(0, 50)}
          </td>
          <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
            {email}
