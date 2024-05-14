@@ -1,8 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const SingleCard = ({ assignment }) => {
-  const { _id,title, photo,description,  photoURL, Deadline, status, label, name } = assignment;
+const SingleCard = ({ assignment,cardData,setCardData }) => {
+  const {
+    _id,
+    title,
+    photo,
+    description,
+    photoURL,
+    Deadline,
+    status,
+    label,
+    name,
+    mark
+  } = assignment;
     console.log(assignment);
 
   const handleDelete = (_id) => {
@@ -29,16 +40,20 @@ const SingleCard = ({ assignment }) => {
              icon: 'success',
            });
          }
-       })
+        })
+        const remaining = cardData.filter(item => item._id !== _id);
+        setCardData(remaining);
      }
    });
 
    
   }
+
+
  return (
    <div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 font-Roboto">
      <img
-       className="object-cover w-full h-64"
+       className="object-cover w-full shadow-2xl drop-shadow-2xl h-64"
        src={
          photo ||
          'https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
@@ -62,22 +77,42 @@ const SingleCard = ({ assignment }) => {
              {status}
            </h1>
          </span>
-         <a
+         <a title={title}
            href=""
            className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
            role="link"
          >
-           {title}
+           {title.substring(0, 50)}
          </a>
-         <span
-           className={` ${label === 'easy' && 'text-cyan-500'} ${
-             label === 'medium' && 'text-amber-500'
-           } ${
-             label === 'hard' && 'text-rose-600'
-           } bg-[#E9F2FE] px-4 pb-1 rounded-full font-Space`}
-         >
-           {label}
-         </span>
+         <div className="flex items-center justify-between mx-4">
+           <div>
+             {' '}
+             <span
+               className={` ${label === 'easy' && 'text-cyan-500'} ${
+                 label === 'medium' && 'text-amber-500'
+               } ${
+                 label === 'hard' && 'text-rose-600'
+               } bg-[#E9F2FE] px-4 pb-1 rounded-full font-Space`}
+             >
+               {label}
+             </span>
+           </div>
+           <div>
+             <h1 className="text--500">
+               Marks:{' '}
+               <span
+                 className={`${mark <= 30 && 'text-red-600'} ${
+                   mark <= 50 && 'text-rose-600'
+                 } ${mark <= 70 && 'text-blue-500'} ${
+                   mark <= 100 && 'text-green-600'
+                 }`}
+               >
+                 {mark}
+               </span>
+             </h1>
+           </div>
+         </div>
+
          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
            {description || ''}
          </p>
@@ -86,11 +121,6 @@ const SingleCard = ({ assignment }) => {
        <div className="mt-4">
          <div className="flex items-center">
            <div className="flex items-center">
-             <img
-               className="object-cover h-10 rounded-full"
-               src={photoURL}
-               alt="Avatar"
-             ></img>
              <a
                href="#"
                className="mx-2 font-semibold text-gray-700 dark:text-gray-200"
@@ -101,11 +131,12 @@ const SingleCard = ({ assignment }) => {
            </div>
            <div className="flex items-center gap-12">
              <div>
-               <span className="mx-1 text-xs text-gray-600 dark:text-gray-300 font-Space">
-                 {' '}
-                 Date :{' '}
-                 {new Date(Deadline).toLocaleDateString() ||
-                   new Date().toLocaleDateString()}
+               <span className="mx-1 text-xs text-rose-600 flex items-center gap-1 dark:text-gray-300 font-Space ">
+                 Date :
+                 <span className="text-green-500">
+                   {new Date(Deadline).toLocaleDateString() ||
+                     new Date().toLocaleDateString()}
+                 </span>
                </span>
              </div>
              <div>
@@ -126,15 +157,22 @@ const SingleCard = ({ assignment }) => {
          </div>
        </div>
        <div className="flex items-center flex-col flex-1">
-         <div className="flex items-center gap-4 justify-around mt-8">
+         <div className="flex items-center gap-4 justify-around mt-8 text-balance">
+           <div>
+             <Link to={`/view/${_id}`}>
+               <button className="border-2 py-1 rounded-md text-lg font-medium bg-cyan-700 text-white font-Space px-5">
+                 View
+               </button>
+             </Link>
+           </div>
            <Link to={`/update/${_id}`}>
-             <button className="border-2 px-12 py-1 rounded-md text-lg font-medium bg-cyan-700 text-white font-Space">
+             <button className="border-2 py-1 rounded-md text-lg font-medium bg-cyan-700 text-white font-Space px-5">
                Update{' '}
              </button>
            </Link>
            <button
              onClick={() => handleDelete(_id)}
-             className="border-2 px-12 py-1 rounded-md text-lg font-medium bg-rose-500 text-white font-Space"
+             className="border-2 py-1 rounded-md text-lg font-medium bg-rose-500 text-white font-Space px-5"
            >
              Delete
            </button>

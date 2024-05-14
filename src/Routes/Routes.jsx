@@ -8,6 +8,8 @@ import Assignment from "../components/Assignment/Assignment";
 import CreateAssignment from "../components/CreateAssignment/CreateAssignment";
 import PendingAssignment from "../components/PendingAssignment/PendingAssignment";
 import UpdateOne from "../components/UpdateOne/UpdateOne";
+import View from "../components/View/View";
+import TakeEvent from "../components/TakeEvent/TakeEvent";
 
  const router = createBrowserRouter([
    {
@@ -44,6 +46,18 @@ import UpdateOne from "../components/UpdateOne/UpdateOne";
        {
          path: '/update/:id',
          element: <UpdateOne />,
+         loader: ({ params }) =>
+           fetch(`http://localhost:5000/create-assignment/${params.id}`),
+       },
+       {
+         path: '/view/:id',
+         element: <View />,
+         loader: ({ params }) =>
+           fetch(`http://localhost:5000/create-assignment/${params.id}`),
+       },
+       {
+         path: '/take/:id',
+         element: <TakeEvent/>,
          loader: ({ params }) =>
            fetch(`http://localhost:5000/create-assignment/${params.id}`),
        },

@@ -7,7 +7,8 @@ const CreateAssignment = () => {
   const [startDate, setStartDate] = useState(new Date());
   // console.log(startDate);
 
- const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const [error, setError] = useState("");
  // console.log(user);
  // handle form submit to get value;
  const handleGetData = e => {
@@ -19,13 +20,13 @@ const CreateAssignment = () => {
   const photo = form.photo.value;
   const label = form.label.value;
   const description = form.description.value;
-   const status = 'pending';
+   const status = "pending";
    const Deadline = startDate;
-  const email = user?.email;
+  const email = form.email.value;
   const photoURL = user?.photoURL;
    const newAssignment = {
     name,
-    title,
+     title,
     mark,
     photo,
     label,
@@ -44,15 +45,26 @@ const CreateAssignment = () => {
      body:JSON.stringify(newAssignment)
    }).then(res => res.json()).then(data => {
      console.log(data);
-     if (data.insertedId) {
-       Swal.fire({
-         title:'success',
-         icon: 'success',
-         text: 'Your Assignment Creating Now',
-         confirmButtonText:'cool'
-       });
+    
+     if (!/^[0-9]+$/.test(mark)) {
+        setError('Please mark assign to Number')
+      //  toast.error('please mark assign to Number')
+       return
      }
+      if (!Math.max(mark <= 100)) {
+        setError('Marks max value 100');
+        return;
+      }
+       if (data.insertedId) {
+         Swal.fire({
+           title: 'success',
+           icon: 'success',
+           text: 'Your Assignment Creating Now',
+           confirmButtonText: 'cool',
+         });
+       }
    })
+   setError('')
  }
  return (
    <div className="h-[91.6vh]">
@@ -85,6 +97,17 @@ const CreateAssignment = () => {
                type="text"
                placeholder="Name..."
                name="name"
+               id=""
+             />
+           </div>
+           <div className="space-y-2">
+             <p className="font-medium">Email : </p>
+
+             <input
+               className="w-full px-2 py-2 rounded outline-none bg-slate-200"
+               type="text"
+               placeholder="Email*"
+               name="email"
                id=""
              />
            </div>
@@ -131,6 +154,9 @@ const CreateAssignment = () => {
                  id=""
                  placeholder="Marks of Assignment..."
                />
+               {error && (
+                 <p className="text-sm font-mono text-red-500">{error}</p>
+               )}
              </div>
 
              <div className="flex-1 space-y-2">
