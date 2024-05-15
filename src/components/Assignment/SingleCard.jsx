@@ -8,9 +8,8 @@ const SingleCard = ({ assignment,cardData,setCardData }) => {
     title,
     photo,
     description,
-    photoURL,
     Deadline,
-    status,
+
     label,
     name,
     mark
@@ -56,10 +55,9 @@ const SingleCard = ({ assignment,cardData,setCardData }) => {
      <div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 font-Roboto">
        <Skeleton count={3}/>
        <img
-         className="object-cover w-full shadow-2xl drop-shadow-2xl h-64"
+         className="object-cover w-full flex-1 shadow-2xl drop-shadow-2xl h-64"
          src={
-           photo ||
-           'https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+           photo 
          }
          alt="Article"
        ></img>

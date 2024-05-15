@@ -10,6 +10,8 @@ import PendingAssignment from "../components/PendingAssignment/PendingAssignment
 import UpdateOne from "../components/UpdateOne/UpdateOne";
 import View from "../components/View/View";
 import TakeEvent from "../components/TakeEvent/TakeEvent";
+import Details from "../components/Features/Details";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 
  const router = createBrowserRouter([
    {
@@ -31,7 +33,11 @@ import TakeEvent from "../components/TakeEvent/TakeEvent";
        },
        {
          path: '/assignment',
-         element: <Assignment />,
+         element: (
+           <PrivateRoute>
+             <Assignment />
+           </PrivateRoute>
+         ),
          loader: () => fetch('http://localhost:5000/create-assignment'),
        },
        {
@@ -40,7 +46,11 @@ import TakeEvent from "../components/TakeEvent/TakeEvent";
        },
        {
          path: '/pending-assignment',
-         element: <PendingAssignment />,
+         element: (
+           <PrivateRoute>
+             <PendingAssignment />
+           </PrivateRoute>
+         ),
          loader: () => fetch('http://localhost:5000/create-assignment'),
        },
        {
@@ -57,9 +67,15 @@ import TakeEvent from "../components/TakeEvent/TakeEvent";
        },
        {
          path: '/take/:id',
-         element: <TakeEvent/>,
+         element: <TakeEvent />,
          loader: ({ params }) =>
            fetch(`http://localhost:5000/create-assignment/${params.id}`),
+       },
+       {
+         path: '/details/:id',
+         element: <Details />,
+         loader: ({ params }) =>
+           fetch(` http://localhost:5000/features/${params.id}`),
        },
      ],
    },

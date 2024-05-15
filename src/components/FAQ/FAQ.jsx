@@ -1,10 +1,10 @@
 const FAQSection = () => {
   return (
-    <div className="w-full h-[42rem] my-2">
+    <div className="w-full my-2">
       <h2 className="text-5xl font-bold text-center">
         Frequently asked <span className="text-rose-500">questions (FAQ)</span>{' '}
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
         <div>
           <img className=" w-full my-4 mt-12 lg:h-[69%] shadow-2xl drop-shadow-lg"
             src="https://img.freepik.com/free-vector/faqs-concept-illustration_114360-5185.jpg?size=338&ext=jpg&ga=GA1.1.553209589.1715644800&semt=sph"

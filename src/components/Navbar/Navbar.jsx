@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { FaXmark} from 'react-icons/fa6';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
-import { AiFillHome } from "react-icons/ai";
-import { MdRoundaboutRight } from "react-icons/md";
 import { AuthContext } from "../../FirebaseProvider/AuthProvider";
 
 
@@ -22,8 +20,8 @@ const Navbar = () => {
          to="/"
          className={({ isActive }) =>
            isActive
-             ? 'text-orange-500 border-amber-600 rounded border-2 pr-5 pl-4 font-medium'
-             : 'hover:bg-transparent  rounded border-2 pr-5 pl-4 font-medium text-rose-400 border-amber-600 '
+             ? 'text-rose-500 border-amber-600 rounded border-b-2 px-4 font-medium'
+             : 'hover:bg-transparent  rounded   px-4  font-medium  border-amber-600 '
          }
        >
          {' '}
@@ -34,44 +32,39 @@ const Navbar = () => {
          to="/assignment"
          className={({ isActive }) =>
            isActive
-             ? 'text-orange-500 border-amber-600 rounded border-2 pr-5 pl-4 font-medium'
-             : 'hover:bg-transparent  rounded border-2 pr-5 pl-4 font-medium text-rose-400 border-amber-600 '
+             ? 'text-rose-500 border-amber-600 rounded border-b-2 px-4 font-medium'
+             : 'hover:bg-transparent  rounded  px-4  font-medium  border-amber-600 '
          }
        >
          {' '}
          Assignment
        </NavLink>
 
-  
        <NavLink
          to="/create-assignment"
          className={({ isActive }) =>
            isActive
-             ? 'text-orange-500 border-amber-600 rounded border-2 pr-5 pl-4 font-medium'
-             : 'hover:bg-transparent  rounded border-2 pr-5 pl-4 font-medium text-rose-400 border-amber-600 '
+             ? 'text-rose-500 border-amber-600 rounded border-b-2 px-4 font-medium'
+             : 'hover:bg-transparent  rounded  px-4  font-medium  border-amber-600 '
          }
        >
          {' '}
          Create Assignment
        </NavLink>
 
-  
        <NavLink
          to="/pending-assignment"
          className={({ isActive }) =>
            isActive
-             ? 'text-orange-500 border-amber-600 rounded border-2 pr-5 pl-4 font-medium'
-             : 'hover:bg-transparent  rounded border-2 pr-5 pl-4 font-medium text-rose-400 border-amber-600 '
+             ? 'text-rose-500 border-amber-600 rounded border-b-2 px-4 font-medium'
+             : 'hover:bg-transparent  rounded px-4 font-medium border-amber-600 '
          }
        >
          {' '}
          Pending Assignment
        </NavLink>
-
-  
-
      </>
- );
+   );
  
  const [theme, setTheme] = useState(
  localStorage.getItem("theme") ?  localStorage.getItem("theme") : 'system'
@@ -137,14 +130,13 @@ onWindowMatch();
        } duration-500  lg:hidden`}
      >
        <div className="flex flex-col items-center gap-5 mt-24">
-         <img
-           className="w-16 h-16 rounded-full"
-           src={
-             user?.photoURL ||
-             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf1GF5jMq6-jZ_ECZ5jDHvUotsaM0K4RcSaA&s'
-           }
-           alt="Profile"
-         />
+         { user && 
+           <img
+             className="w-16 h-16 rounded-full"
+             src={user?.photoURL}
+             alt="Profile"
+           />
+         }
 
          <div>
            <ul className="flex flex-col gap-4 font-Space">
@@ -196,6 +188,12 @@ onWindowMatch();
                  {' '}
                  Pending Assignment
                </NavLink>
+              {user && <button
+                 onClick={() => logOut()}
+                 className="border-2 px-4 w-full  font-extrabold hover:text-rose-600 bg-rose-500 text-white border-amber-500 py-1 rounded font-mono hover:bg-transparent"
+               >
+                 logout
+               </button>}
              </>
            </ul>
          </div>
@@ -210,13 +208,15 @@ onWindowMatch();
        <div>
          {/* menu button home about service  */}
 
-         <div>
-           <ul className="items-center gap-5 hidden lg:flex font-Space">{navLinks}</ul>
-         </div>
          {/* navbar end lg device  */}
        </div>
 
        <div className="flex items-center gap-3">
+         <div>
+           <ul className="items-center gap-5 hidden lg:flex font-Space">
+             {navLinks}
+           </ul>
+         </div>
          {/* Toggle function button in dark theme */}
          <div className="flex items-center gap-2">
            {options.map(opt => (
@@ -237,7 +237,7 @@ onWindowMatch();
            {user ? (
              <button
                onClick={() => logOut()}
-               className="border-2 px-4 lg:hidden font-bold text-white border-amber-500 py-1 rounded styleOf hover:bg-transparent"
+               className="border-2 px-4  font-bold text-white border-amber-500 py-1 rounded styleOf hover:bg-transparent"
              >
                logout
              </button>
@@ -255,49 +255,49 @@ onWindowMatch();
              </NavLink>
            )}
          </div>
-        {user && <div className="flex items-center relative">
-           <img title={user?.displayName}
-             onClick={() => setDropdown(!dropdown)}
-             className="w-12 h-12 rounded-full hidden md:flex lg:flex"
-             src={
-               user?.photoURL
-             }
-             alt=""
-           />
+         {user && (
+           <div className="flex items-center relative">
+             <img
+               title={user?.displayName}
+               onClick={() => setDropdown(!dropdown)}
+               className="w-12 h-12 rounded-full hidden md:flex lg:flex"
+               src={user?.photoURL}
+               alt=""
+             />
 
-           <div
-             className={`absolute h-24 top-14 ${
-               dropdown ? '' : 'hidden'
-             } right-4 border bg-rose-200 px-4 rounded-md w-[12rem]`}
-           >
-             
-             {user ? (
-               <div className="space-y-4 p-2">
-                 <h1 className=" text-center dark:text-black">
-                   {user.displayName}
-                 </h1>
-                 <button
-                   onClick={() => logOut()}
-                   className="border-2 px-4 w-full  font-bold hover:text-rose-600 bg-orange-500 border-amber-500 py-1 rounded text-white hover:bg-transparent"
+             <div
+               className={`absolute h-24 top-14 ${
+                 dropdown ? '' : 'hidden'
+               } right-4 border bg-rose-200 px-4 rounded-md w-[12rem]`}
+             >
+               {user ? (
+                 <div className="space-y-4 p-2">
+                   <h1 className=" text-center dark:text-black">
+                     {user.displayName}
+                   </h1>
+                   <button
+                     onClick={() => logOut()}
+                     className="border-2 px-4 w-full  font-bold hover:text-rose-600 bg-orange-500 border-amber-500 py-1 rounded text-white hover:bg-transparent"
+                   >
+                     logout
+                   </button>
+                 </div>
+               ) : (
+                 <NavLink
+                   to="/login"
+                   className={({ isActive }) =>
+                     isActive
+                       ? 'text-orange-500 border-amber-600 rounded border-2 px-2 font-bold uppercase lg:hidden'
+                       : 'hover:bg-transparent  rounded border-2 pr-5 pl-4 font-bold uppercase text-rose-400 border-amber-600 lg:hidden'
+                   }
                  >
-                   logout
-                 </button>
-               </div>
-             ) : (
-               <NavLink
-                 to="/login"
-                 className={({ isActive }) =>
-                   isActive
-                     ? 'text-orange-500 border-amber-600 rounded border-2 px-2 font-bold uppercase lg:hidden'
-                     : 'hover:bg-transparent  rounded border-2 pr-5 pl-4 font-bold uppercase text-rose-400 border-amber-600 lg:hidden'
-                 }
-               >
-                 {' '}
-                 login
-               </NavLink>
-             )}
+                   {' '}
+                   login
+                 </NavLink>
+               )}
+             </div>
            </div>
-         </div>}
+         )}
          <div
            className="text-2xl border-2 p-1 md:flex lg:hidden flex text-white bg-rose-600"
            onClick={() => setOpen(!open)}

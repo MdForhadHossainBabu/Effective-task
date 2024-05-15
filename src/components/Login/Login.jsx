@@ -1,14 +1,18 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import '../Banner/Banner'
 import { FaEye,FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../FirebaseProvider/AuthProvider';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../UseAuth/useAuth';
+import axios from 'axios';
 
 
 const Login = () => {
 
-  const { signIn, setUser, signInGoogle } = useContext(AuthContext);
+  const { signIn, setUser, signInGoogle } = useAuth()
   // console.log(signIn);
+  const navigate = useNavigate();
+  const location = useLocation();
+  // console.log(location);
   
  const [open, setOpen] = useState(false);
 
@@ -23,15 +27,30 @@ const Login = () => {
     signIn(email, password).then(result => {
       console.log(result.user);
       setUser(result.user)
+      const user = { email }
+      axios.post(`http://localhost:5000/jwt`, user, {
+        withCredentials: true
+      })
+      .then(res => {
+        console.log(res.data);
+        if (res.data.success) {
+          navigate(location?.state || '/')
+        }
+      })
+
     }).catch(error => {
       console.log(error);
     })
   }
   //sign in with google 
   const handleGoogle = () => {
-    signInGoogle().then(result => {
-      console.log(result.user);
-      setUser(result.user)
+    signInGoogle()
+      .then(result => {
+        setUser(result.user);
+        console.log(result.user);
+        if (result.user) {
+          navigate(location?.pathname || '/' )
+        }
     }).then(error => {
       console.log(error);
     })

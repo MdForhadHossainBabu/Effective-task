@@ -1,20 +1,9 @@
-// import axios from "axios";
 
-import axios from "axios";
 
 const SingleTable = ({ tableData }) => {
   console.log(tableData);
-  const { _id, title, label, email, status, mark, Deadline } = tableData;
-  console.log(status);
-  // status change this function 
-  const handleProgress = async (id, prevStatus, Status) => {
-    console.log(id, prevStatus, Status);
-    const { data } = await axios.patch(
-      `http://localhost:5000/create-assignment/${id}`,{status}
-    );
-    console.log(data);
-  
-  }
+  const {  title, label, email,  mark, Deadline } = tableData;
+
  return (
    <>
      <tbody className="bg-white divide-y divide-gray-200  font-Roboto">
@@ -49,28 +38,20 @@ const SingleTable = ({ tableData }) => {
          </td>
          <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
            <div
-             className={`inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-yellow-100/60 ${
-               status === 'pending' && 'text-yellow-500'
-             }  ${status === 'In Progress' && 'text-cyan-500'}  ${
-               status === 'Rejected' && 'text-rose-500'
-             }`}
+             className="inline-flex items-center px-3 py-1 rounded-full" 
            >
              <span
-               className={`h-1.5 w-1.5 rounded-full ${
-                 status === 'pending' && 'bg-yellow-500'
-               }  
-         ${status === 'In Progress' && 'bg-cyan-500'}     
-         ${status === 'Rejected' && 'bg-rose-500'}     
-        `}
+               className=""  
+      
              ></span>
-             <h2 className="text-sm font-normal ">{[status]}</h2>
+             <h2 className="text-sm font-normal ">{status}</h2>
            </div>
            <div>{ }</div>
          </td>
          <td className="px-4 py-4 text-sm whitespace-nowrap">
            <div className="flex items-center gap-x-6">
              <button
-               onClick={() => handleProgress(_id, status, 'In Progress')}
+          
                className="text-gray-500 transition-colors duration-200   hover:text-cyan-500 focus:outline-none"
              >
                <svg

@@ -44,7 +44,8 @@ updateProfile(auth.currentUser, {
   
 
  // logout button
- const logOut = () => {
+  const logOut = () => {
+    setLoading(true)
   return signOut(auth)
  }
 

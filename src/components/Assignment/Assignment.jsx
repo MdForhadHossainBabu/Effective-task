@@ -14,6 +14,7 @@ const Assignment = () => {
      <Helmet>
        <title>Effective Task || All Assignment </title>
      </Helmet>
+     <h1 className="text-4xl font-extrabold font-Roboto text-center text-rose-500 my-4">All Assignment </h1>
      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-8xl max-w-7xl mx-auto">
        
        {cardData.map(assignment => (
