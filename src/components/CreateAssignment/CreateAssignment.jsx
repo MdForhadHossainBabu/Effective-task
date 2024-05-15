@@ -68,7 +68,7 @@ const CreateAssignment = () => {
    setError('')
  }
  return (
-   <div className="h-[91.6vh]">
+   <div className="h-[91.6vh] mb-12">
      <Helmet>
        <title>Effective Task || Create-Assignment</title>
      </Helmet>
@@ -101,6 +101,7 @@ const CreateAssignment = () => {
                type="text"
                placeholder="Name..."
                name="name"
+               required
                id=""
              />
            </div>
@@ -112,6 +113,7 @@ const CreateAssignment = () => {
                type="text"
                placeholder="Email*"
                name="email"
+               required
                id=""
              />
            </div>
@@ -123,6 +125,7 @@ const CreateAssignment = () => {
                type="text"
                placeholder="Title..."
                name="title"
+               required
                id=""
              />
            </div>
@@ -132,6 +135,7 @@ const CreateAssignment = () => {
                className="bg-slate-200 w-full outline-none px-4 py-2 rounded"
                type="text"
                name="photo"
+               required
                id=""
                placeholder="Photo URL..."
              />
@@ -141,6 +145,7 @@ const CreateAssignment = () => {
              <select
                className=" w-full p-3 outline-none font-medium rounded bg-slate-200"
                name="label"
+               required
                id=""
              >
                <option value="easy">Easy</option>
@@ -154,6 +159,7 @@ const CreateAssignment = () => {
                <input
                  className="bg-slate-200 outline-none px-4 py-2 w-full font-medium rounded"
                  type="text"
+                 required
                  name="marks"
                  id=""
                  placeholder="Marks of Assignment..."
@@ -178,6 +184,7 @@ const CreateAssignment = () => {
              <textarea
                className="bg-slate-200 drop-shadow-2xl shadow-2xl w-full h-20  p-2  outline-none font-medium opacity-70 rounded"
                name="description"
+               required
                placeholder="Description"
                id=""
              ></textarea>

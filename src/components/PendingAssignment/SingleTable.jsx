@@ -36,18 +36,7 @@ const SingleTable = ({ tableData }) => {
              </p>
            </div>
          </td>
-         <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-           <div
-             className="inline-flex items-center px-3 py-1 rounded-full" 
-           >
-             <span
-               className=""  
-      
-             ></span>
-             <h2 className="text-sm font-normal ">{status}</h2>
-           </div>
-           <div>{ }</div>
-         </td>
+    
          <td className="px-4 py-4 text-sm whitespace-nowrap">
            <div className="flex items-center gap-x-6">
              <button
