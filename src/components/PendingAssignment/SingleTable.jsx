@@ -1,7 +1,6 @@
 
 
 const SingleTable = ({ tableData }) => {
-  console.log(tableData);
   const {  title, label, email,  mark, Deadline } = tableData;
 
  return (

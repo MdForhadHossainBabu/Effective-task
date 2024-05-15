@@ -2,7 +2,6 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const View = () => {
  const loader = useLoaderData();
- console.log(loader);
    const {
     _id,
     title,
@@ -14,7 +13,6 @@ const View = () => {
     name,
     mark
   } = loader;
-    console.log(loader);
  return (
    <div className="flex items-center justify-center "> 
      <div className="max-w-2xl overflow-hidden my-10 shadow-2xl  rounded-lg drop-shadow-2xl dark:bg-gray-800 font-Roboto bg-slate-200">

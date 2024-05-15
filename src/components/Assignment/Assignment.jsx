@@ -5,8 +5,11 @@ import { Helmet } from "react-helmet-async";
 
 const Assignment = () => {
 
-    const assignments = useLoaderData();
+  const assignments = useLoaderData();
+  
+  
   const [cardData, setCardData] = useState(assignments);
+  console.log(cardData);
   
 
  return (

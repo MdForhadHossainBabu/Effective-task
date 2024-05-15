@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../UseAuth/useAuth";
-import { ClipLoader, ScaleLoader } from "react-spinners";
+import { ScaleLoader } from "react-spinners";
 // import { useState } from 'react';
 
 const PrivateRoute = ({ children }) => {
